@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--Feito pra ver quando é smartphone ou tablet-->
+    <resources>
+    <bool name="phone">true</bool>
+    <bool name="tablet">false</bool>
+</resources>

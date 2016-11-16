@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_jogo_adapter"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.rennan.listajogos.JogoAdapter">
+
+
+    <TextView
+        android:id="@+id/txtPublisher"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/txtTitle"
+        android:layout_below="@+id/txtTitle"
+        android:text="TextView"
+        android:textColor="@color/white" />
+
+    <ImageView
+        android:id="@+id/imgThumb"
+        android:layout_marginStart="13dp"
+        android:layout_marginTop="11dp"
+        app:srcCompat="@mipmap/ic_launcher"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/txtTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textAppearance="@android:style/TextAppearance.Large"
+        android:textColor="@color/white"
+        android:layout_alignTop="@+id/imgThumb"
+        android:layout_toEndOf="@+id/imgThumb"
+        android:layout_marginStart="16dp" />
+
+    <RatingBar
+        android:id="@+id/rbarScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:isIndicator="true"
+        style="@style/Widget.AppCompat.RatingBar.Small"
+        android:progressTint="@color/star_primary"
+        android:secondaryProgressTint="@color/star_secondary"
+        android:numStars="10"
+        android:layout_below="@+id/txtPublisher"
+        android:layout_alignStart="@+id/txtPublisher" />
+</RelativeLayout>

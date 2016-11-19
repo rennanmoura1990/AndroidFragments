@@ -1,6 +1,7 @@
 package com.example.rennan.listajogos;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -29,4 +30,6 @@ public class MainActivity extends AppCompatActivity implements OnJogoClick {
                     .commit();
         }
     }
+
+
 }

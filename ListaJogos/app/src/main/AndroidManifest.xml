@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity"
-            android:launchMode="singleTop"> <!--Reusa a activity,caso ela estiver no topo da pilha-->
+            android:launchMode="singleTop"
             android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

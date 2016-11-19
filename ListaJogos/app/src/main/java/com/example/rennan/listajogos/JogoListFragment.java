@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.support.v4.view.MenuItemCompat;
@@ -36,6 +37,7 @@ public class JogoListFragment extends Fragment implements LoaderManager.LoaderCa
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
+
     }
 
     @Override
@@ -54,13 +56,11 @@ public class JogoListFragment extends Fragment implements LoaderManager.LoaderCa
                     Jogo jogo = (Jogo)mListJogos.getItemAtPosition(i);
                     ((OnJogoClick)getActivity()).onJogoClick(jogo);
                 }
-
-
             }
         });
 
         mLoaderManager = getLoaderManager();
-        //mLoaderManager.initLoader(0, null, this);
+
 
         return view;
     }
@@ -108,4 +108,11 @@ public class JogoListFragment extends Fragment implements LoaderManager.LoaderCa
     public boolean onQueryTextChange(String newText) {
         return false;
     }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+    }
+
+
 }

@@ -30,7 +30,7 @@ public class JogoDetailFragment extends Fragment {
 
     public static JogoDetailFragment newInstance(Jogo jogo){
         Bundle bundle = new Bundle();
-        bundle.putSerializable("jogo",jogo);
+        bundle.putParcelable("jogo",jogo);
         JogoDetailFragment jdf = new JogoDetailFragment();
         jdf.setArguments(bundle);
         return jdf;
@@ -66,7 +66,7 @@ public class JogoDetailFragment extends Fragment {
     }
 
 
-        mJogo = (Jogo)getArguments().getSerializable("jogo");
+        mJogo = getArguments().getParcelable("jogo");
 
         if(getResources().getBoolean(R.bool.phone)){
             CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout)view

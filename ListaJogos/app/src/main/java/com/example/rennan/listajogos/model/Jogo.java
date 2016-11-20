@@ -1,5 +1,8 @@
 package com.example.rennan.listajogos.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
@@ -10,7 +13,7 @@ import java.util.Map;
  * Created by Rennan on 29/10/2016.
  */
 
-public class Jogo implements Serializable {
+public class Jogo implements Parcelable {
 
     /*@SerializedName("id")
     public String id;
@@ -24,4 +27,37 @@ public class Jogo implements Serializable {
     public String thumb;
     public Plataforms plataforms;
 
+    protected Jogo(Parcel in) {
+        title = in.readString();
+        score = in.readString();
+        publisher = in.readString();
+        short_description = in.readString();
+        thumb = in.readString();
+    }
+
+    public static final Creator<Jogo> CREATOR = new Creator<Jogo>() {
+        @Override
+        public Jogo createFromParcel(Parcel in) {
+            return new Jogo(in);
+        }
+
+        @Override
+        public Jogo[] newArray(int size) {
+            return new Jogo[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(title);
+        parcel.writeString(score);
+        parcel.writeString(publisher);
+        parcel.writeString(short_description);
+        parcel.writeString(thumb);
+    }
 }

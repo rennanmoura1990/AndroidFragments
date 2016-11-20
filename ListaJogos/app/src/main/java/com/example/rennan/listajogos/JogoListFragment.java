@@ -3,6 +3,7 @@ package com.example.rennan.listajogos;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -21,6 +22,7 @@ import android.widget.ListView;
 
 import com.example.rennan.listajogos.model.Jogo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -28,6 +30,7 @@ public class JogoListFragment extends Fragment implements LoaderManager.LoaderCa
 
     ListView mListJogos;
     LoaderManager mLoaderManager;
+    List<Jogo> mJogos;
 
     public JogoListFragment() {
         // Required empty public constructor
@@ -37,7 +40,6 @@ public class JogoListFragment extends Fragment implements LoaderManager.LoaderCa
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
-
     }
 
     @Override
@@ -47,6 +49,13 @@ public class JogoListFragment extends Fragment implements LoaderManager.LoaderCa
         View view = inflater.inflate(R.layout.fragment_jogo_list, container, false);
 
         mListJogos = (ListView)view.findViewById(R.id.list_jogos);
+
+        if(savedInstanceState != null){
+            mJogos = savedInstanceState.getParcelableArrayList("listajogos");
+            mListJogos.setAdapter(new JogoAdapter(getActivity(), mJogos));
+        }
+
+
 
         mListJogos.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
@@ -83,6 +92,7 @@ public class JogoListFragment extends Fragment implements LoaderManager.LoaderCa
     @Override
     public void onLoadFinished(android.support.v4.content.Loader<List<Jogo>> loader, List<Jogo> data) {
         if (data != null) {
+            mJogos = data;
             mListJogos.setAdapter(new JogoAdapter(getActivity(), data));
         }
     }
@@ -112,7 +122,7 @@ public class JogoListFragment extends Fragment implements LoaderManager.LoaderCa
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
+        outState.putParcelableArrayList("listajogos", (ArrayList<? extends Parcelable>) mJogos);
     }
-
 
 }

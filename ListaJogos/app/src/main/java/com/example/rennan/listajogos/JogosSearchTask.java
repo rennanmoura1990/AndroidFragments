@@ -43,4 +43,5 @@ public class JogosSearchTask extends AsyncTaskLoader<List<Jogo>> {
         }
         return mJogos;
     }
+
 }

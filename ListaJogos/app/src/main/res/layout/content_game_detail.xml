@@ -44,20 +44,6 @@
             android:numStars="10" />
 
         <TextView
-            android:id="@+id/txtPlataformsLabel"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Plataforms : " />
-
-        <TextView
-            android:id="@+id/txtPlataformsDetail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Some..." />
-
-        <TextView
             android:id="@+id/txtDescriptionLabel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

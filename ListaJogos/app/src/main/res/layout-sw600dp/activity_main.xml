@@ -1,25 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/spaceinvaders"
-    tools:context="com.example.rennan.listajogos.MainActivity"
-    android:orientation="horizontal">
+    tools:context="com.example.rennan.listajogos.MainActivity">
 
-    <fragment
-        android:id="@+id/jogolist_fragment"
-        android:layout_width="0dp"
-        android:layout_weight="1"
+    <!-- AppBar -->
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/apptoolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <!-- Toolbar -->
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?android:attr/actionBarSize"
+            android:background="@color/colorPrimary"
+            android:popupTheme="@style/AppTheme.PopupOverlay">
+        </android.support.v7.widget.Toolbar>
+
+        <!--Tab Layout-->
+        <TableLayout
+            android:id="@+id/table"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </TableLayout>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:name="com.example.rennan.listajogos.JogoListFragment"/>
-    
-    <FrameLayout
-        android:id="@+id/content_jogo_detail"
-        android:layout_weight="1"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"></FrameLayout>
-    
-    
-</LinearLayout>
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/apptoolbar">
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/container_jogoslist"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/apptoolbar"
+            android:layout_weight="1"/>
+
+        <FrameLayout
+            android:id="@+id/container_jogodetail"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+        </FrameLayout>
+    </LinearLayout>
+    <!--android:name="com.example.rennan.listajogos.JogoListFragment"
+        tools:layout="@layout/fragment_jogo_list"-->
+</RelativeLayout>

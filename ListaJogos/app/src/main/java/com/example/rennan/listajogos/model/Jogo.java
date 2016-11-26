@@ -6,8 +6,11 @@ import android.os.Parcelable;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import okhttp3.internal.platform.Platform;
 
 /**
  * Created by Rennan on 29/10/2016.
@@ -15,17 +18,11 @@ import java.util.Map;
 
 public class Jogo implements Parcelable {
 
-    /*@SerializedName("id")
-    public String id;
-    @SerializedName("name")
-    public String name;*/
-
     public String title;
     public String score;
     public String publisher;
     public String short_description;
     public String thumb;
-    public Plataforms plataforms;
 
     protected Jogo(Parcel in) {
         title = in.readString();
@@ -60,4 +57,5 @@ public class Jogo implements Parcelable {
         parcel.writeString(short_description);
         parcel.writeString(thumb);
     }
+
 }

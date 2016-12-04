@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity implements OnJogoClick {
 
     Toolbar toolbar;
     JogoListFragment jogoListFragment;
-    JogosFavoritos jogosFavoritos;
+    JogosFavoritosFragment jogosFavoritosFragment;
     ViewPager mViewPager;
     SelectorPageAdapter selectorPageAdapter;
 
@@ -24,22 +24,26 @@ public class MainActivity extends AppCompatActivity implements OnJogoClick {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar); //por causa da AppCompatActivity
+
+            toolbar = (Toolbar) findViewById(R.id.toolbar);
+            setSupportActionBar(toolbar); //por causa da AppCompatActivity
+
 
         buildViewPager();
 
     }
 
-    private void buildViewPager(){
+    private void buildViewPager() {
         mViewPager = (ViewPager) findViewById(R.id.container_jogoslist);
         selectorPageAdapter = new SelectorPageAdapter(getSupportFragmentManager());
 
         mViewPager.setAdapter(selectorPageAdapter);
 
-        TabLayout tab = (TabLayout) findViewById(R.id.table);
 
-        tab.setupWithViewPager(mViewPager);
+            TabLayout tab = (TabLayout) findViewById(R.id.table);
+
+            tab.setupWithViewPager(mViewPager);
+
     }
 
     @Override
@@ -52,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements OnJogoClick {
             JogoDetailFragment jdf = JogoDetailFragment.newInstance(jogo);
             getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.content_jogo_detail, jdf, "detail")
+                    .replace(R.id.container_jogodetail, jdf, "detail")
                     .commit();
         }
     }
@@ -73,10 +77,10 @@ public class MainActivity extends AppCompatActivity implements OnJogoClick {
                     return jogoListFragment;
                 case 1:
                 default:
-                    if (jogosFavoritos == null) {
-                        jogosFavoritos = new JogosFavoritos();
+                    if (jogosFavoritosFragment == null) {
+                        jogosFavoritosFragment = new JogosFavoritosFragment();
                     }
-                    return jogosFavoritos;
+                    return jogosFavoritosFragment;
             }
         }
 
@@ -88,10 +92,10 @@ public class MainActivity extends AppCompatActivity implements OnJogoClick {
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "Lista";
+                    return getResources().getString(R.string.list);
                 case 1:
                 default:
-                    return "Favoritos";
+                    return getResources().getString(R.string.favorites);
             }
         }
 

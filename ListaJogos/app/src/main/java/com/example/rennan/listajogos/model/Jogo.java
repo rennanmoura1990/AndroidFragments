@@ -18,13 +18,17 @@ import okhttp3.internal.platform.Platform;
 
 public class Jogo implements Parcelable {
 
+    public String id;
     public String title;
     public String score;
     public String publisher;
     public String short_description;
     public String thumb;
 
+    public Jogo(){}
+
     protected Jogo(Parcel in) {
+        id = in.readString();
         title = in.readString();
         score = in.readString();
         publisher = in.readString();
@@ -51,6 +55,7 @@ public class Jogo implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(id);
         parcel.writeString(title);
         parcel.writeString(score);
         parcel.writeString(publisher);

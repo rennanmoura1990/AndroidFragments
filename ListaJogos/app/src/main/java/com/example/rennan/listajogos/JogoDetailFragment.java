@@ -1,7 +1,6 @@
 package com.example.rennan.listajogos;
 
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -15,9 +14,17 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.rennan.listajogos.model.Jogo;
+import com.example.rennan.listajogos.sqlite.FavoritoEvent;
+import com.example.rennan.listajogos.sqlite.RNJogos;
+
 import com.squareup.picasso.Picasso;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 
 public class JogoDetailFragment extends Fragment {
@@ -27,10 +34,13 @@ public class JogoDetailFragment extends Fragment {
     TextView mPublisher;
     RatingBar mScore;
     ImageView mThumbDetail;
+    FloatingActionButton mFab;
+    CollapsingToolbarLayout appBarLayout;
+    RNJogos rnJogos = new RNJogos();
 
-    public static JogoDetailFragment newInstance(Jogo jogo){
+    public static JogoDetailFragment newInstance(Jogo jogo) {
         Bundle bundle = new Bundle();
-        bundle.putParcelable("jogo",jogo);
+        bundle.putParcelable("jogo", jogo);
         JogoDetailFragment jdf = new JogoDetailFragment();
         jdf.setArguments(bundle);
         return jdf;
@@ -52,33 +62,35 @@ public class JogoDetailFragment extends Fragment {
             ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
             ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        }
 
-        FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+
+        mFab = (FloatingActionButton) view.findViewById(R.id.fab);
+        mFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO Adicionar aos favoritos
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                add_removeBookmarks();
             }
         });
-
-    }
 
 
         mJogo = getArguments().getParcelable("jogo");
 
-        if(getResources().getBoolean(R.bool.phone)){
-            CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout)view
+        if (rnJogos.verificaJogoFavoritado(getActivity(), mJogo.title))
+            changeFloatingButton(true);
+        else
+            changeFloatingButton(false);
+
+        if (getResources().getBoolean(R.bool.phone)) {
+            appBarLayout= (CollapsingToolbarLayout) view
                     .findViewById(R.id.toolbar_layout);
-            ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(mJogo.title);
+            ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(mJogo.title);
         }
 
-        mPublisher = (TextView)view.findViewById(R.id.txtPublisherDetail);
-        mDescription = (TextView)view.findViewById(R.id.txtDescriptionDetail);
-        mScore = (RatingBar)view.findViewById(R.id.DetailratingBar);
-        mThumbDetail = (ImageView)view.findViewById(R.id.thumb_detail);
-
+        mPublisher = (TextView) view.findViewById(R.id.txtPublisherDetail);
+        mDescription = (TextView) view.findViewById(R.id.txtDescriptionDetail);
+        mScore = (RatingBar) view.findViewById(R.id.DetailratingBar);
+        mThumbDetail = (ImageView) view.findViewById(R.id.thumb_detail);
 
 
         String auxScore = mJogo.score.equals("") ? "0" : mJogo.score;
@@ -93,8 +105,29 @@ public class JogoDetailFragment extends Fragment {
                     .into(mThumbDetail);
         }
 
-
         return view;
     }
 
+    public void add_removeBookmarks() {
+        if (!rnJogos.verificaJogoFavoritado(getActivity(), mJogo.title)) {
+            rnJogos.inserirJogoFavorito(getActivity(), mJogo.title, mJogo.score, mJogo.publisher, mJogo.short_description, mJogo.thumb);
+            changeFloatingButton(true);
+            Toast.makeText(getActivity(), getResources().getString(R.string.favorited_game), Toast.LENGTH_SHORT).show();
+        } else {
+            rnJogos.excluirJogoFavorito(getActivity(), rnJogos.buscaIDJogo(getActivity(), mJogo.title));
+            changeFloatingButton(false);
+            Toast.makeText(getActivity(), getResources().getString(R.string.unfavorited_game), Toast.LENGTH_SHORT).show();
+
+        }
+        EventBus.getDefault().post(new FavoritoEvent());
+
+    }
+
+    public void changeFloatingButton(boolean favorite) {
+        if (favorite)
+            mFab.setImageResource(R.drawable.ic_star_favorited);
+        else
+            mFab.setImageResource(R.drawable.ic_star_notfavorited);
+
+    }
 }

@@ -48,22 +48,21 @@ public class JogoListFragment extends Fragment implements LoaderManager.LoaderCa
 
         View view = inflater.inflate(R.layout.fragment_jogo_list, container, false);
 
-        mListJogos = (ListView)view.findViewById(R.id.list_jogos);
+        mListJogos = (ListView) view.findViewById(R.id.list_jogos);
 
-        if(savedInstanceState != null){
+        if (savedInstanceState != null) {
             mJogos = savedInstanceState.getParcelableArrayList("listajogos");
+            if(mJogos != null)
             mListJogos.setAdapter(new JogoAdapter(getActivity(), mJogos));
         }
 
-
-
-        mListJogos.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+        mListJogos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                if(getActivity() instanceof  OnJogoClick) {
-                    Jogo jogo = (Jogo)mListJogos.getItemAtPosition(i);
-                    ((OnJogoClick)getActivity()).onJogoClick(jogo);
+                if (getActivity() instanceof OnJogoClick) {
+                    Jogo jogo = (Jogo) mListJogos.getItemAtPosition(i);
+                    ((OnJogoClick) getActivity()).onJogoClick(jogo);
                 }
             }
         });
@@ -77,7 +76,7 @@ public class JogoListFragment extends Fragment implements LoaderManager.LoaderCa
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
-        inflater.inflate(R.menu.menu_search,menu);
+        inflater.inflate(R.menu.menu_search, menu);
         MenuItem searchItem = menu.findItem(R.id.search);
         SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
         searchView.setOnQueryTextListener(this);
@@ -86,7 +85,7 @@ public class JogoListFragment extends Fragment implements LoaderManager.LoaderCa
     @Override
     public Loader<List<Jogo>> onCreateLoader(int id, Bundle args) {
         String q = args.getString("q");
-        return new JogosSearchTask(getActivity(),q);
+        return new JogosSearchTask(getActivity(), q);
     }
 
     @Override
@@ -108,8 +107,8 @@ public class JogoListFragment extends Fragment implements LoaderManager.LoaderCa
     public boolean onQueryTextSubmit(String query) {
         //Bundle é tipo passagem de dados de uma activity para outra
         Bundle bundle = new Bundle();
-        bundle.putString("q",query);
-        mLoaderManager.restartLoader(0,bundle,this);
+        bundle.putString("q", query);
+        mLoaderManager.restartLoader(0, bundle, this);
         return false;
     }
 

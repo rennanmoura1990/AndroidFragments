@@ -52,7 +52,7 @@ public class JogoAdapter extends ArrayAdapter<Jogo> {
         }
         holder.txtTitle.setText(jogo.title);
         holder.txtPublisher.setText(jogo.publisher);
-        holder.rtBarScore.setRating(Float.parseFloat(jogo.score == "" ? "0" : jogo.score));
+        holder.rtBarScore.setRating(Float.parseFloat(jogo.score.equals("") ? "0" : jogo.score));
 
         return view;
 

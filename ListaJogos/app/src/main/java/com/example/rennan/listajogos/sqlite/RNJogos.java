@@ -14,10 +14,9 @@ public class RNJogos {
 
     DAOJogos dao = new DAOJogos();
 
-    public void inserirJogoFavorito(Context ctx, String title, String score, String publisher, String short_description, String thumb){
+    public void inserirJogoFavorito(Context ctx, String title, String score, String publisher, String short_description, String thumb) {
 
-        if (!verificaJogoFavoritado(ctx,title))
-            dao.inserirJogoFavorito(ctx, title, score, publisher, short_description, thumb);
+        dao.inserirJogoFavorito(ctx, title, score, publisher, short_description, thumb);
     }
 
     public ArrayList<Jogo> listaJogosFavoritos(Context ctx) {
@@ -25,20 +24,20 @@ public class RNJogos {
     }
 
 
-    public void excluirJogoFavorito(Context ctx,String nome){
-        dao.excluirJogo(ctx,nome);
+    public void excluirJogoFavorito(Context ctx, String nome) {
+        dao.excluirJogo(ctx, nome);
     }
 
-    public boolean verificaJogoFavoritado(Context cxt, String title){
-        String auxtitulo = dao.tituloJogo(cxt,title);
-        if(auxtitulo != null)
+    public boolean verificaJogoFavoritado(Context cxt, String title) {
+        String auxtitulo = dao.tituloJogo(cxt, title);
+        if (auxtitulo != null)
             return true;
         else
             return false;
     }
 
-    public String buscaIDJogo(Context ctx,String title){
-        return dao.buscaIDJogo(ctx,title);
+    public String buscaIDJogo(Context ctx, String title) {
+        return dao.buscaIDJogo(ctx, title);
     }
 
 

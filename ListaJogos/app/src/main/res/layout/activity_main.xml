@@ -20,24 +20,20 @@
             android:layout_width="match_parent"
             android:layout_height="?android:attr/actionBarSize"
             android:background="@color/colorPrimary"
-            android:popupTheme="@style/AppTheme.PopupOverlay">
-        </android.support.v7.widget.Toolbar>
+            android:popupTheme="@style/AppTheme.PopupOverlay"></android.support.v7.widget.Toolbar>
 
         <!--Tab Layout-->
         <android.support.design.widget.TabLayout
             android:id="@+id/table"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-        </android.support.design.widget.TabLayout>
+            android:layout_height="wrap_content"></android.support.design.widget.TabLayout>
 
-        </android.support.design.widget.AppBarLayout>
-    
+    </android.support.design.widget.AppBarLayout>
+
     <android.support.v4.view.ViewPager
         android:id="@+id/container_jogoslist"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/apptoolbar" />
 
-    <!--android:name="com.example.rennan.listajogos.JogoListFragment"
-        tools:layout="@layout/fragment_jogo_list"-->
 </RelativeLayout>

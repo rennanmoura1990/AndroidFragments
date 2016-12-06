@@ -44,7 +44,7 @@ public class JogoAdapter extends ArrayAdapter<Jogo> {
         }
 
         if (jogo.thumb.isEmpty()) {
-            holder.ImgThumb.setImageResource(R.mipmap.ic_launcher);
+            holder.ImgThumb.setImageResource(R.drawable.ic_icon_spaceinvaders);
         } else {
             Picasso.with(getContext())
                     .load(jogo.thumb)

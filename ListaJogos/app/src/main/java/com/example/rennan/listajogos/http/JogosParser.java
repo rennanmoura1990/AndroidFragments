@@ -6,6 +6,7 @@ import com.example.rennan.listajogos.model.Jogo;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
@@ -23,7 +24,6 @@ import okhttp3.Response;
 public class JogosParser {
 
 
-    /*public static final String URL_SEARCH = "https://igdbcom-internet-game-database-v1.p.mashape.com/games/?fields=id%2Cname&limit=25&offset=0&order=release_dates.date%3Adesc&search=";*/
     public static final String URL_SEARCH = "https://videogamesrating.p.mashape.com/get.php?count=20&game=";
 
     public static List<Jogo> listajogos(String nome) throws IOException {
@@ -45,13 +45,6 @@ public class JogosParser {
             Type type = new TypeToken<List<Jogo>>() {
             }.getType();
             jogos = gson.fromJson(json, type);
-
-            /*GsonBuilder gsonBuilder = new GsonBuilder();
-            gsonBuilder.registerTypeAdapter(Jogo.class,new JogoDeserializer());
-            Gson gson = gsonBuilder.create();
-            Type type = new TypeToken<List<Jogo>>() {
-            }.getType();*/
-
 
         }
         return jogos;

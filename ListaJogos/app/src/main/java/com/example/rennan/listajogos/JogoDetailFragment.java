@@ -58,9 +58,7 @@ public class JogoDetailFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_jogo_detail, container, false);
 
         if (getResources().getBoolean(R.bool.phone)) {
-            Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbar);
-            ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
-            ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
         }
 
@@ -84,6 +82,9 @@ public class JogoDetailFragment extends Fragment {
         if (getResources().getBoolean(R.bool.phone)) {
             appBarLayout= (CollapsingToolbarLayout) view
                     .findViewById(R.id.toolbar_layout);
+            Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbar);
+            ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+            ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(mJogo.title);
         }
 
@@ -98,7 +99,7 @@ public class JogoDetailFragment extends Fragment {
         mDescription.setText(mJogo.short_description);
         mScore.setRating(Float.parseFloat(auxScore));
         if (mJogo.thumb.isEmpty()) {
-            mThumbDetail.setImageResource(R.mipmap.ic_launcher);
+            mThumbDetail.setImageResource(R.drawable.ic_icon_spaceinvaders);
         } else {
             Picasso.with(getActivity())
                     .load(mJogo.thumb)

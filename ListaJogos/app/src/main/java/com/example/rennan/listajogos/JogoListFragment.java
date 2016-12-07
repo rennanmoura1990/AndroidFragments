@@ -1,12 +1,10 @@
 package com.example.rennan.listajogos;
 
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.support.v4.view.MenuItemCompat;
@@ -19,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+
 
 import com.example.rennan.listajogos.model.Jogo;
 
@@ -52,8 +51,8 @@ public class JogoListFragment extends Fragment implements LoaderManager.LoaderCa
 
         if (savedInstanceState != null) {
             mJogos = savedInstanceState.getParcelableArrayList("listajogos");
-            if(mJogos != null)
-            mListJogos.setAdapter(new JogoAdapter(getActivity(), mJogos));
+            if (mJogos != null)
+                mListJogos.setAdapter(new JogoAdapter(getActivity(), mJogos));
         }
 
         mListJogos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -68,7 +67,6 @@ public class JogoListFragment extends Fragment implements LoaderManager.LoaderCa
         });
 
         mLoaderManager = getLoaderManager();
-
 
         return view;
     }

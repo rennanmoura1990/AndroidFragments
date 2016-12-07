@@ -30,7 +30,7 @@ public class JogoDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_game_detail);
 
 
-        Jogo jogo = (Jogo) getIntent().getParcelableExtra("jogo");
+        Jogo jogo = getIntent().getParcelableExtra("jogo");
         JogoDetailFragment jdf = JogoDetailFragment.newInstance(jogo);
 
         getSupportFragmentManager()

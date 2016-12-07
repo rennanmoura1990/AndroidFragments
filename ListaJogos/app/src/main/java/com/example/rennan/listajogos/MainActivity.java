@@ -25,8 +25,8 @@ public class MainActivity extends AppCompatActivity implements OnJogoClick {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-            toolbar = (Toolbar) findViewById(R.id.toolbar);
-            setSupportActionBar(toolbar); //por causa da AppCompatActivity
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar); //por causa da AppCompatActivity
 
 
         buildViewPager();
@@ -39,10 +39,12 @@ public class MainActivity extends AppCompatActivity implements OnJogoClick {
 
         mViewPager.setAdapter(selectorPageAdapter);
 
+        TabLayout tab = (TabLayout) findViewById(R.id.table);
 
-            TabLayout tab = (TabLayout) findViewById(R.id.table);
+        tab.setupWithViewPager(mViewPager);
 
-            tab.setupWithViewPager(mViewPager);
+        tab.getTabAt(0).setIcon(R.drawable.ic_joystick_icon);
+        tab.getTabAt(1).setIcon(R.drawable.ic_star_favorited);
 
     }
 

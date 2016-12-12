@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 
+import com.ToxicBakery.viewpager.transforms.AccordionTransformer;
 import com.example.rennan.listajogos.model.Jogo;
 
 public class MainActivity extends AppCompatActivity implements OnJogoClick {
@@ -38,6 +39,8 @@ public class MainActivity extends AppCompatActivity implements OnJogoClick {
         selectorPageAdapter = new SelectorPageAdapter(getSupportFragmentManager());
 
         mViewPager.setAdapter(selectorPageAdapter);
+
+        mViewPager.setPageTransformer(true,new AccordionTransformer());
 
         TabLayout tab = (TabLayout) findViewById(R.id.table);
 
